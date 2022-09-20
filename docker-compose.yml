@@ -1,0 +1,21 @@
+version: '3'
+services:
+  nuxt:
+    container_name: client
+    build: ./docker/nuxt
+    ports:
+      - 9000:3000
+    volumes:
+      - ./src:/workspace
+    working_dir: /workspace
+    command: yarn run dev
+  go:
+    build:
+      context: ./docker/go
+      dockerfile: Dockerfile
+    working_dir: /api
+    command: go run main.go
+    volumes:
+      - ./api:/api
+    ports:
+      - "8080:8080"
