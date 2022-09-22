@@ -1,15 +1,15 @@
 package main
 
 import (
+	"my-joke-book/database"
+	"my-joke-book/routes"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	engine := gin.Default()
-	engine.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "hello world!!",
-		})
-	})
-	engine.Run(":8080")
+	router := gin.New()
+	database.ConnectDB()
+	routes.UserRoute(router)
+	router.Run(":8080")
 }
