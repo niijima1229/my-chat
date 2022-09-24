@@ -18,5 +18,10 @@ func ConnectDB() {
 		fmt.Println("DB error(Init): ", err)
 	}
 	db.AutoMigrate(&models.User{})
+	var users = []models.User{
+		{Name: "jinzhu1", Email: "test@com", Password: "password"},
+		{Name: "jinzhu2", Email: "test2@com", Password: "password"},
+		{Name: "jinzhu3", Email: "test3@com", Password: "password"}}
+	db.Create(&users)
 	DB = db
 }
