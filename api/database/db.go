@@ -23,7 +23,7 @@ func ConnectDB() {
 	if err != nil {
 		fmt.Println("DB error(Init): ", err)
 	}
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.User{}, &models.Joke{})
 	hash, err := HashPassword("password")
 	if err != nil {
 		fmt.Println("Hash error(Init): ", err)
