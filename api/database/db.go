@@ -23,15 +23,6 @@ func ConnectDB() {
 	if err != nil {
 		fmt.Println("DB error(Init): ", err)
 	}
-	db.AutoMigrate(&models.User{}, &models.Joke{})
-	hash, err := HashPassword("password")
-	if err != nil {
-		fmt.Println("Hash error(Init): ", err)
-	}
-	var users = []models.User{
-		{Name: "jinzhu1", Email: "test@com", Password: hash},
-		{Name: "jinzhu2", Email: "test2@com", Password: hash},
-		{Name: "jinzhu3", Email: "test3@com", Password: hash}}
-	db.Create(&users)
+	db.AutoMigrate(&models.User{}, &models.Joke{}, &models.Genre{})
 	DB = db
 }
